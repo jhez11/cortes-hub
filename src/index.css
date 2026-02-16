@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* Leaflet map styles - imported dynamically but needs base z-index */
+.leaflet-container {
+  z-index: 1;
+  font-family: inherit;
+}
+
+.leaflet-pane {
+  z-index: 1;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 2;
+}
+
+@layer base {
+  :root {
+    /* Coastal-inspired palette for Cortes, Surigao del Sur */
+    --background: 180 20% 98%;
+    --foreground: 200 50% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 50% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 50% 10%;
+
+    /* Deep teal - trust & nature */
+    --primary: 174 62% 28%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Light teal background */
+    --secondary: 174 30% 94%;
+    --secondary-foreground: 174 62% 28%;
+
+    --muted: 180 15% 95%;
+    --muted-foreground: 200 20% 45%;
+
+    /* Warm coral accent - community warmth */
+    --accent: 16 85% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Emergency red-orange */
+    --emergency: 12 90% 52%;
+    --emergency-foreground: 0 0% 100%;
+
+    /* Success green */
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning amber */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 10%;
+
+    --border: 180 15% 90%;
+    --input: 180 15% 90%;
+    --ring: 174 62% 28%;
+
+    --radius: 1rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(174 62% 28%) 0%, hsl(180 55% 22%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(174 62% 28%) 0%, hsl(180 55% 35%) 50%, hsl(174 40% 45%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(180 20% 98%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(16 85% 58%) 0%, hsl(25 90% 55%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(200 50% 10% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(200 50% 10% / 0.08), 0 2px 4px -2px hsl(200 50% 10% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(200 50% 10% / 0.08), 0 4px 6px -4px hsl(200 50% 10% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(200 50% 10% / 0.1), 0 8px 10px -6px hsl(200 50% 10% / 0.05);
+    --shadow-glow: 0 0 20px hsl(174 62% 28% / 0.3);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 200 50% 6%;
+    --foreground: 180 20% 98%;
+
+    --card: 200 45% 10%;
+    --card-foreground: 180 20% 98%;
+
+    --popover: 200 45% 10%;
+    --popover-foreground: 180 20% 98%;
+
+    --primary: 174 55% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 40% 15%;
+    --secondary-foreground: 174 55% 45%;
+
+    --muted: 200 35% 15%;
+    --muted-foreground: 180 15% 65%;
+
+    --accent: 16 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --emergency: 12 85% 50%;
+    --emergency-foreground: 0 0% 100%;
+
+    --success: 152 55% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 88% 48%;
+    --warning-foreground: 0 0% 10%;
+
+    --border: 200 35% 18%;
+    --input: 200 35% 18%;
+    --ring: 174 55% 45%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(174 55% 35%) 0%, hsl(180 50% 28%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(200 50% 8%) 0%, hsl(174 45% 18%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(200 45% 12%) 0%, hsl(200 40% 10%) 100%);
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-md border border-white/20;
+    box-shadow: var(--shadow-lg);
+  }
+
+.service-card {
+    @apply relative overflow-hidden rounded-2xl p-4 transition-all duration-300;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-md);
+  }
+
+  .service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* Mobile-first container */
+  .app-container {
+    @apply max-w-md mx-auto;
+  }
+
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .accent-gradient {
+    background: var(--gradient-accent);
+  }
+
+  .primary-gradient {
+    background: var(--gradient-primary);
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  .animate-pulse-soft {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulseSoft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+}
